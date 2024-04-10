@@ -59,27 +59,35 @@ const show = (input: any) => {
   </header>
 
   <!-- Table of products -->
-  <table class="table-auto w-full p-6 m-6">
+  <div class="w-screen p-6">
+  <table class="table-auto w-full p-6">
     <!-- Table header -->
     <thead class="bg-gray-300">
-      <td>
+      <td class="p-2">
         Product ID
       </td>
-      <td>
+      <td class="p-2">
         Product description
       </td>
     </thead>
     <!-- Table body. Loops through all products in the products array -->
     <tbody>
-      <tr v-for="product in products" class="even:bg-blue-300 odd:bg-blue-200 hover:bg-white p-6" @click="show(product.id)">
-        <td class="p-2">{{ product.id }}</td>
-        <td>
-          {{ product.description }}
-          <tr>
-            <td :hidden="!product.priceShown">Price: {{ product.price }}</td>
-          </tr>
-        </td>
-      </tr>
+      <template v-for="product in products">
+        <tr class="even:bg-blue-300 odd:bg-blue-200 hover:bg-white p-6" @click="show(product.id)">
+          <td class="p-2">
+            {{ product.id }}
+          </td>
+          <td class="p-2">
+            {{ product.description }}
+          </td>
+        </tr>
+        <tr class="bg-gray-100" :hidden="!product.priceShown">
+          <td></td>
+          <td class="p-2">Price: {{ product.price }}</td>
+        </tr>
+        <tr hidden></tr>
+      </template>
     </tbody>
   </table>
+  </div>
 </template>
